@@ -1,7 +1,7 @@
 import argparse
 import configparser
 import os
-from rc_logger import setup_logger
+from compiler.devinci_rc.rc_logger import setup_logger
 
 class PathCompiler:
     def __init__(self, input_file, output_file, debug=False, logcls=None):

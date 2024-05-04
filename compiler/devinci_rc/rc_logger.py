@@ -1,13 +1,15 @@
 import logging
 
-def setup_logger():
+def setup_logger(debug=False):
     """
     Set up a logger to write debug and error information to a log file.
 
     Returns:
         logging.Logger: A logger instance.
     """
+
     logger = logging.getLogger(__name__)
+    level=logging.WARNING if not debug else logging.DEBUG
     logger.setLevel(logging.DEBUG)
 
     # Create a file handler for logging to a file

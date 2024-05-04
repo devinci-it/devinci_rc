@@ -36,4 +36,4 @@
 # ------------------------------------------------------------
 
 alias gs='git status'
-alias cdd='pushd $1'
+alias cdd='pushd <path>'

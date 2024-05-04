@@ -39,7 +39,6 @@
 
 # Set PYTHONPATH
 
-export PYTHONPATH="$OUTPUT_DIR/scripts:$PYTHONPATH"
 
 # Get the absolute path of the script directory
 SCRIPT_DIR="$(realpath "$(dirname "$0")")"
@@ -56,6 +55,8 @@ echo "Registration directory: $REG_DIR"
 # Get the absolute directory name of REG_DIR
 OUTPUT_DIR="$(realpath "$(dirname "$REG_DIR")")"
 echo "Output directory: $OUTPUT_DIR"
+
+export PYTHONPATH="$OUTPUT_DIR/scripts:$PYTHONPATH"
 
 
 # Function to verify integrity of .sh and .py files
