@@ -168,6 +168,5 @@ git tag -a "config-script-$UPDATED_VERSION" -m "Version $UPDATED_VERSION of the 
 git push origin "config-script-$UPDATED_VERSION"
 
 # Remove the lock file after successful completion
-rm "$LOCK_FILE"
 
 # End of script
