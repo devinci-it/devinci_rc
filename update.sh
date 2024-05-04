@@ -84,25 +84,27 @@ else
     echo "Changes were not committed."
 fi
 
-# Tag the script
-VERSION="v1.0"
-LOCK_FILE="./config-script.lock"
-SCRIPT_HASH=$(sha256sum "$0" | cut -d ' ' -f 1)
+# Get the latest tagged version
+LATEST_TAG=$(git describe --abbrev=0 --tags)
+echo "Latest tag: $LATEST_TAG"
 
-if [ -f "$LOCK_FILE" ]; then
-    # Read the hash from the lock file
-    OLD_HASH=$(head -n 1 "$LOCK_FILE")
-    if [ "$SCRIPT_HASH" != "$OLD_HASH" ]; then
-        echo "Script has been modified since the last execution. Please review changes."
-        exit 1
-    fi
-fi
+# Extract version components
+IFS='-' read -ra VERSION_PARTS <<< "$LATEST_TAG"
+VERSION=${VERSION_PARTS[2]}
 
-# Write the new hash to the lock file
-echo "$SCRIPT_HASH" > "$LOCK_FILE"
+# Increment the version
+IFS='.' read -ra VERSION_NUMS <<< "$VERSION"
+MAJOR="${VERSION_NUMS[0]}"
+MINOR="${VERSION_NUMS[1]}"
+PATCH="${VERSION_NUMS[2]}"
 
-# Tag the script
-git tag -a "config-script-$VERSION" -m "Version $VERSION of the configuration script"
-git push origin "config-script-$VERSION"
+PATCH=$((PATCH + 1))
+
+UPDATED_VERSION="$MAJOR.$MINOR.$PATCH"
+echo "Updated version: $UPDATED_VERSION"
+
+# Tag the script with the updated version
+git tag -a "config-script-$UPDATED_VERSION" -m "Version $UPDATED_VERSION of the configuration script"
+git push origin "config-script-$UPDATED_VERSION"
 
 # End of script
