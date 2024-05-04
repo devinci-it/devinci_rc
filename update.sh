@@ -83,13 +83,20 @@ elif [ "$response" = "force" ]; then
 else
     echo "Changes were not committed."
 fi
-
 # Get the latest tagged version
 LATEST_TAG=$(git describe --abbrev=0 --tags)
 echo "Latest tag: $LATEST_TAG"
 
+# Extract only the version tag from the latest tag
+VERSION_TAG=$(echo "$LATEST_TAG" | grep -oP '^config-script-v\d+\.\d+\.\d+')
+if [ -z "$VERSION_TAG" ]; then
+    echo "Error: Unable to extract version tag from latest tag. Expected format: 'config-script-vX.Y.Z'"
+    exit 1
+fi
+echo "Version tag: $VERSION_TAG"
+
 # Extract version components
-IFS='-' read -ra VERSION_PARTS <<< "$LATEST_TAG"
+IFS='-' read -ra VERSION_PARTS <<< "$VERSION_TAG"
 VERSION=${VERSION_PARTS[2]}
 
 # Increment the version
@@ -106,5 +113,3 @@ echo "Updated version: $UPDATED_VERSION"
 # Tag the script with the updated version
 git tag -a "config-script-$UPDATED_VERSION" -m "Version $UPDATED_VERSION of the configuration script"
 git push origin "config-script-$UPDATED_VERSION"
-
-# End of script
