@@ -84,7 +84,15 @@ else
     echo "Changes were not committed."
 fi
 # Get the latest tagged version
-LATEST_TAG=$(git describe --abbrev=0 --tags)
+# Get the latest tagged version
+LATEST_TAG=$(git describe --abbrev=0 --tags 2>/dev/null)
+
+# Check if the command was successful
+if [ $? -ne 0 ]; then
+    # If not, set LATEST_TAG to a default value
+    LATEST_TAG="config-script-v0.0.0"
+fi
+
 echo "Latest tag: $LATEST_TAG"
 
 # Extract only the version tag from the latest tag
@@ -97,8 +105,8 @@ echo "Version tag: $VERSION_TAG"
 
 # Extract version components
 IFS='-' read -ra VERSION_PARTS <<< "$VERSION_TAG"
-VERSION=${VERSION_PARTS[2]}
 
+VERSION=${VERSION_PARTS[2]}
 # Increment the version
 IFS='.' read -ra VERSION_NUMS <<< "$VERSION"
 MAJOR="${VERSION_NUMS[0]}"
