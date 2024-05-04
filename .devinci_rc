@@ -1,0 +1,44 @@
+#! /bin/bash
+# .devinci_rc
+#
+# This script serves as the main configuration file for the Devinci system.
+# It is designed to be sourced into the user's shell session to apply custom
+# environment settings, aliases, and other configurations.
+#
+# Usage:
+#   Source this script in your shell initialization file (e.g., .bashrc):
+#     source ~/.devinci_rc
+#
+#   Once sourced, it will load custom environment variables, define aliases,
+#   and apply other configurations defined in this script.
+#
+# Important:
+#   Make sure not to directly modify this script. Instead, modify configuration
+#   files located in the registration.d directory. After making changes, run the
+#   update.sh script to apply the modifications.
+#
+# Note:
+#   This script also sources the aliases.sh file if it exists in the user's
+#   home directory. Make sure to create and manage your aliases in the
+#   aliases.sh file for easier maintenance.
+#
+DEBUG=true
+# Get the full absolute path of the current script
+# Get the full absolute path of the current script being sourced
+export RC_FILE_FULL_PATH="$(realpath "${BASH_SOURCE[0]}")"
+echo $RC_FILE_FULL_PATH
+
+
+# Get the directory name from the full path
+export RC_FILE_DIR="$(dirname "$RC_FILE_FULL_PATH")"
+echo $RC_FILE_DIR
+
+# Check if the debug flag is set
+if [ "$DEBUG" = true ]; then
+  echo "Debug mode enabled."
+fi
+
+# Source alias.sh if it exists
+source $RC_FILE_DIR"/aliases.sh"
+source $RC_FILE_DIR"/env.sh"
+source $RC_FILE_DIR"/path.sh"

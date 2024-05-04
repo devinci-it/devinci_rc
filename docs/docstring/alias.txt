@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# alias.sh
+#
+# This script serves as the central repository for defining shell aliases in the Devinci system.
+# Aliases are shortcuts for frequently used commands or command sequences, enhancing productivity
+# and ease of use in the shell environment.
+#
+# Usage:
+#   Do not directly modify this script. It is automatically generated from the alias.ini file
+#   located in the registration.d directory. To update aliases, follow these steps:
+#   1. Modify the alias.ini file in the registration.d directory to add, remove, or modify aliases.
+#   2. Run the update.sh script to generate the updated alias.sh file and apply the changes.
+#
+# Important:
+#   Do not directly modify this script. Any changes made directly to this script will be overwritten
+#   the next time the update.sh script is run. Instead, modify the alias.ini file and run the update.sh
+#   script to apply the changes.
+#
+# Note:
+#   The alias.ini file follows a specific format. Each section represents an alias, with the
+#   alias name enclosed in square brackets ([]). Within each section, specify either a 'command'
+#   or 'script' parameter to define the alias. Comments in the .ini file are indicated by a '#' symbol.
+#   Example:
+#     [ls]
+#     command=ls -l
+#
+#     [update]
+#     script=~/scripts/update_system.sh
+#
+
+# Automatically generated aliases
+# ------------------------------------------------------------
+# This section contains aliases automatically generated from the alias.ini file.
+# Avoid manually editing aliases in this section, as they will be overwritten.
+# ------------------------------------------------------------

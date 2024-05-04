@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# path.sh
+#
+# This script serves as the central repository for defining custom paths in the Devinci system.
+# Custom paths are used to specify additional directories containing executable files or resources.
+#
+# Usage:
+#   Do not directly modify this script. It is automatically generated from the path.ini file
+#   located in the registration.d directory. To update custom paths, follow these steps:
+#   1. Modify the path.ini file in the registration.d directory to add, remove, or modify paths.
+#   2. Run the update.sh script to generate the updated path.sh file and apply the changes.
+#
+# Important:
+#   Do not directly modify this script. Any changes made directly to this script will be overwritten
+#   the next time the update.sh script is run. Instead, modify the path.ini file and run the update.sh
+#   script to apply the changes.
+#
+# Note:
+#   The path.ini file follows a specific format. Each section represents a custom path, with the
+#   path name enclosed in square brackets ([]). Within each section, specify the value of the path,
+#   along with its description, absolute path, and priority value.
+#   Comments in the .ini file are indicated by a ';' symbol.
+#   Example:
+#     ; [CUSTOM_PATH]
+#     ; description = Brief description of the custom path
+#     ; name = CUSTOM_PATH
+#     ; absolute_path = /path/to/directory
+#     ; priority = 10
+#
+# ------------------------------------------------------------
+

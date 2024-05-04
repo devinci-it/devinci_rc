@@ -1,0 +1,16 @@
+2024-05-03 20:57:26,497 - DEBUG - Path does not exist: /path/to/custom/utils/bin
+2024-05-03 20:57:26,497 - DEBUG - Path does not exist: /path/to/custom/python/bin
+2024-05-03 20:57:26,497 - DEBUG - Path does not exist: /path/to/custom/nodejs/bin
+2024-05-03 21:03:37,285 - INFO - Starting compilation of paths from path.ini
+2024-05-03 21:04:24,094 - INFO - Starting compilation of paths from path.ini
+2024-05-03 21:07:21,257 - INFO - Starting compilation of paths from path.ini
+2024-05-03 21:08:10,872 - INFO - Starting compilation of paths from path.ini
+2024-05-03 21:09:38,975 - INFO - Starting compilation of paths from path.ini
+2024-05-03 21:10:14,727 - INFO - Starting compilation of paths from path.ini
+2024-05-03 21:11:21,223 - ERROR - An error occurred: PathCompiler.__init__() got an unexpected keyword argument 'logger'
+2024-05-03 21:11:39,128 - INFO - Starting compilation of paths from path.ini
+2024-05-03 21:13:10,880 - INFO - Starting compilation of paths from path.ini
+2024-05-03 21:13:39,479 - INFO - Starting compilation of paths from path.ini
+2024-05-03 21:13:39,479 - ERROR - Path does not exist: /path/to/custom/utils/bin
+2024-05-03 21:13:39,479 - ERROR - Path does not exist: /path/to/custom/python/bin
+2024-05-03 21:13:39,479 - ERROR - Path does not exist: /path/to/custom/nodejs/bin
