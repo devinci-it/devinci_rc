@@ -37,15 +37,17 @@
 # Script Author: [devinci-it]
 # Date: [2024]
 
-# Set the output directory where compiled scripts will be stored
-OUTPUT_DIR="$HOME/config"
-
 # Set PYTHONPATH
+
 export PYTHONPATH="$OUTPUT_DIR/scripts:$PYTHONPATH"
 
 # Get the absolute path of the script directory
 SCRIPT_DIR="$(realpath "$(dirname "$0")")"
+export SCRIPT_DIR
 echo "Script directory: $SCRIPT_DIR"
+
+export COMPILER_DIR="$SCRIPT_DIR/compiler"
+echo "Compiler script directory: $COMPILER_DIR"
 
 # Set REG_DIR to the absolute path of SCRIPT_DIR/registration.d
 REG_DIR="$SCRIPT_DIR/registration.d"
@@ -54,6 +56,28 @@ echo "Registration directory: $REG_DIR"
 # Get the absolute directory name of REG_DIR
 OUTPUT_DIR="$(realpath "$(dirname "$REG_DIR")")"
 echo "Output directory: $OUTPUT_DIR"
+
+
+# Function to verify integrity of .sh and .py files
+verify_integrity() {
+    # Get the list of .sh and .py files in the script directory
+    sh_files=$(find "$SCRIPT_DIR" -maxdepth 1 -type f -name "*.sh")
+    py_files=$(find "$COMPILER_DIR" -maxdepth 1 -type f -name "*.py")
+
+    # Concatenate the file lists
+    all_files="$sh_files"$'\n'"$py_files"
+
+    # Loop through each file
+    while IFS= read -r file; do
+        # Calculate the hash of the file
+        current_hash=$(sha256sum "$file" | awk '{ print $1 }')
+
+        # Write the hash to the .lock file
+        echo "$file:$current_hash" >> "$SCRIPT_DIR/.lock"
+    done <<< "$all_files"
+}
+
+
 
 # Function to print a bordered banner
 print_banner() {
@@ -68,18 +92,17 @@ print_banner() {
 
 # Function to compile alias definitions from alias.ini
 compile_aliases() {
-    python3 scripts/compile_aliases.py "$REG_DIR/alias.ini"
-    "$OUTPUT_DIR/aliases.sh" --debug
+    python3 $COMPILER_DIR/compile_aliases.py "$REG_DIR/alias.ini" "$OUTPUT_DIR/aliases.sh"
 }
 
 # Function to compile environment configurations from env.ini
 compile_env() {
-    python3 scripts/compile_env.py "$REG_DIR/env.ini" "$OUTPUT_DIR/env.sh" --debug
+    python3 $COMPILER_DIR/compile_env.py "$REG_DIR/env.ini" "$OUTPUT_DIR/env.sh"
 }
 
 # Function to compile path configurations from path.ini
 compile_path() {
-    python3 scripts/compile_path.py "$REG_DIR/path.ini" "$OUTPUT_DIR/path.sh"
+    python3 $COMPILER_DIR/compile_path.py "$REG_DIR/path.ini" "$OUTPUT_DIR/path.sh"
 }
 
 # Update alias configurations
