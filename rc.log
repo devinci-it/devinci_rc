@@ -54,3 +54,7 @@
 2024-05-03 22:16:53,800 - ERROR - Path does not exist: /path/to/custom/utils/bin
 2024-05-03 22:16:53,800 - ERROR - Path does not exist: /path/to/custom/python/bin
 2024-05-03 22:16:53,800 - ERROR - Path does not exist: /path/to/custom/nodejs/bin
+2024-05-03 22:36:40,123 - INFO - Starting compilation of paths from path.ini
+2024-05-03 22:36:40,123 - ERROR - Path does not exist: /path/to/custom/utils/bin
+2024-05-03 22:36:40,123 - ERROR - Path does not exist: /path/to/custom/python/bin
+2024-05-03 22:36:40,124 - ERROR - Path does not exist: /path/to/custom/nodejs/bin

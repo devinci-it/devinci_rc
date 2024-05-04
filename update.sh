@@ -1,5 +1,42 @@
 #!/bin/bash
 
+# update.sh
+#
+# This script serves as the automated updater for configurations in the Devinci system.
+# It generates and updates various configuration files based on modifications made to the files
+# located in the registration.d directory.
+#
+# Usage:
+#   Execute this script to automatically update configuration files with the latest changes made
+#   to the files in the registration.d directory. The registration.d directory contains configuration
+#   files such as alias.ini, env.ini, path.ini, and others. Each file may contain definitions or configurations
+#   specific to aliases, environment variables, path additions, or other system settings.
+#
+# Important:
+#   Do not directly modify the generated configuration files. Any changes made directly to these files will be
+#   overwritten the next time the update.sh script is run. Instead, make modifications to the corresponding
+#   .ini files located in the registration.d directory, and execute this script to apply the changes.
+
+# Note:
+#   Configuration files follow specific formats. Refer to appropriate md
+#   documentation for more info or refer to each files docstring prepended
+#   on each .ini file.
+#   After making  changes to the .ini files, run  this script to update the
+#   corresponding configuration files.
+#
+# WARNING:
+#   Before applying updates, this script performs integrity checks to ensure that modifications made to
+#   essential scripts do not prevent successful updates. Any modifications detected in essential scripts
+#   may cause the update process to fail, ensuring that critical system configurations remain intact
+#   and functional. Exercise caution when modifying essential scripts to avoid unintended disruptions
+#   to system functionality.
+#
+# Example Usage:
+#   ./update.sh
+#
+# Script Author: [devinci-it]
+# Date: [2024]
+
 # Set the output directory where compiled scripts will be stored
 OUTPUT_DIR="$HOME/config"
 
@@ -83,7 +120,15 @@ elif [ "$response" = "force" ]; then
 else
     echo "Changes were not committed."
 fi
-# Get the latest tagged version
+
+# Create a lock file for integrity check
+LOCK_FILE="$SCRIPT_DIR/.update.lock"
+if [ -e "$LOCK_FILE" ]; then
+    echo "Lock file already exists. Another update may be in progress."
+    exit 1
+fi
+touch "$LOCK_FILE"
+
 # Get the latest tagged version
 LATEST_TAG=$(git describe --abbrev=0 --tags 2>/dev/null)
 
@@ -121,3 +166,8 @@ echo "Updated version: $UPDATED_VERSION"
 # Tag the script with the updated version
 git tag -a "config-script-$UPDATED_VERSION" -m "Version $UPDATED_VERSION of the configuration script"
 git push origin "config-script-$UPDATED_VERSION"
+
+# Remove the lock file after successful completion
+rm "$LOCK_FILE"
+
+# End of script
