@@ -93,7 +93,7 @@ print_banner() {
 
 # Function to compile alias definitions from alias.ini
 compile_aliases() {
-    python3 $COMPILER_DIR/compile_aliases.py "$REG_DIR/alias.ini" "$OUTPUT_DIR/aliases.sh"
+  python3 $COMPILER_DIR/compile_alias.py  "$REG_DIR/alias.ini"
 }
 
 # Function to compile environment configurations from env.ini

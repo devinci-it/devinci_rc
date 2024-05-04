@@ -21,10 +21,15 @@
 #   This script also sources the aliases.sh file if it exists in the user's
 #   home directory. Make sure to create and manage your aliases in the
 #   aliases.sh file for easier maintenance.
+# Check if .devinci_rc exists before sourcing
+#if [ -f ~/.devinci_rc ]; then
+#    source ~/.devinci_rc
+#fi
 #
 DEBUG=true
 # Get the full absolute path of the current script
 # Get the full absolute path of the current script being sourced
+
 export RC_FILE_FULL_PATH="$(realpath "${BASH_SOURCE[0]}")"
 echo $RC_FILE_FULL_PATH
 

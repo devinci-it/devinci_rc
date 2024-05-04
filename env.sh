@@ -34,5 +34,3 @@
 # This section contains environment variables automatically generated from the env.ini file.
 # Avoid manually editing environment variables in this section, as they will be overwritten.
 # ------------------------------------------------------------
-
-export EXAMPLE_VARIABLE='example_value'

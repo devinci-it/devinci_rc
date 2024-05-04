@@ -34,6 +34,3 @@
 # This section contains aliases automatically generated from the alias.ini file.
 # Avoid manually editing aliases in this section, as they will be overwritten.
 # ------------------------------------------------------------
-
-alias gs='git status'
-alias cdd='pushd <path>'

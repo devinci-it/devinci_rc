@@ -2,6 +2,7 @@ import os
 import configparser
 from .rc_logger import setup_logger
 
+
 class FileParser:
     def parse_input_file(self, input_file):
         """
@@ -66,3 +67,27 @@ class ErrorHandler:
     def handle_exception(logger,message):
         print(message)
         logger.error(message)
+
+
+class DirHandler:
+    @staticmethod
+    def check_and_create(directory, auto_create=False):
+        """
+        Check if a directory exists and optionally create it if it doesn't exist.
+
+        Args:
+            directory (str): The directory to check.
+            auto_create (bool): Whether to automatically create the directory if it doesn't exist.
+
+        Returns:
+            bool: True if the directory exists (or was created), False otherwise.
+        """
+        if os.path.exists(directory):
+            return True
+        elif auto_create:
+            os.makedirs(directory)
+            return True
+        else:
+            return False
+
+

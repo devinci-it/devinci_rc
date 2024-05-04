@@ -10,7 +10,8 @@ class PathCompiler:
         self.debug = debug
         self.logger = logcls if logcls else setup_logger()
 
-    def read_docstring_preface(self, file_path):
+    @staticmethod
+    def read_docstring_preface(file_path):
         """
         Read and return the contents of the docstring preface file.
 

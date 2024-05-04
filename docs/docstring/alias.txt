@@ -34,3 +34,6 @@
 # This section contains aliases automatically generated from the alias.ini file.
 # Avoid manually editing aliases in this section, as they will be overwritten.
 # ------------------------------------------------------------
+
+export ALIAS_PARENT_DIR=$(dirname $(realpath $(dirname ${BASH_SOURCE[0]})))
+export ALIAS_SCRIPT_DIR="$ALIAS_PARENT_DIR/src"
